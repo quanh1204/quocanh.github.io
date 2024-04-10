@@ -1,10 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js"
-
-
-
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyDam-02kb9L8Eifer0W74zDA9DDjCQhndA",
@@ -16,21 +11,17 @@ const firebaseConfig = {
   measurementId: "G-Z16QDLK4EP"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 
 getToken(messaging, { vapidKey: 'BBLMN-pJat1eXXXxwLj0y715N2E27h4-Ls4qTJql2F-fuoqhtdz0ChQ2jZu1sftvdoMbAUUhZiTlimCdD506vbo' }).then((currentToken) => {
   if (currentToken) {
-    // Send the token to your server and update the UI if necessary
-    // ...
+   
   } else {
-    // Show permission request UI
+    
     console.log('No registration token available. Request permission to generate one.');
-    // ...
   }
 }).catch((err) => {
   console.log('An error occurred while retrieving token. ', err);
-  // ...
 });
