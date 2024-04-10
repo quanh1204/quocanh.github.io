@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
- importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
 
-
+//firebase config
  const firebaseConfig = {
   apiKey: "AIzaSyDam-02kb9L8Eifer0W74zDA9DDjCQhndA",
   authDomain: "muc-tieu.firebaseapp.com",
@@ -15,3 +15,14 @@ importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js'
 const app = firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging()
 
+    messaging.onMessage((payload) => {
+      console.log('Message received ', payload);
+      const messagesElement = document.querySelector('.message')
+      const dataHeaderElement = document.createElement('h5')
+      const dataElement = document.createElement('pre')
+      dataElement.style = "overflow-x: hidden;"
+      dataHeaderElement.textContent = "Message Received:"
+      dataElement.textContent = JSON.stringify(payload, null, 2)
+      messagesElement.appendChild(dataHeaderElement)
+      messagesElement.appendChild(dataElement)
+  })
